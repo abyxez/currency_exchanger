@@ -1,4 +1,5 @@
 from rest_framework.serializers import ModelSerializer, SerializerMethodField
+from rest_framework.validators import ValidationError
 
 from .models import Currency
 from .nums import CURRENCY_DICT
@@ -17,7 +18,7 @@ class RateSerializer(ModelSerializer):
         request = self.context.get("request")
         curr_to_convert_code = request.query_params.get("from")
         curr_converted_code = request.query_params.get("to")
-        if curr_converted_code == curr_converted_code:
+        if curr_to_convert_code == curr_converted_code:
             return 1
         value = request.query_params.get("value")
 
